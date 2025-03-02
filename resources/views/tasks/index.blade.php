@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="prose ml-4">
-        <h2 class="text-lg">メッセージ 一覧</h2>
+        <h2 class="text-lg">タスク 一覧</h2>
     </div>
 
     @if (isset($tasks))
@@ -11,7 +11,7 @@
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>メッセージ</th>
+                    <th>タスク</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,5 +24,6 @@
             </tbody>
         </table>
     @endif
+    <a class="btn btn-primary" href="{{ route('tasks.create') }}">新規タスクの投稿</a>
 
 @endsection

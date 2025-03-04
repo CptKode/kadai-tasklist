@@ -19,7 +19,7 @@
                 @foreach ($tasks as $task)
                 <tr>
                     <td><a class="link link-hover text-info" href="{{ route('tasks.show', $task->id) }}">{{ $task->id }}</a></td>
-                    <td>{{ $task->title }}</td>
+                    <td>{{ $task->status }}</td>
                     <td>{{ $task->content }}</td>
                 </tr>
                 @endforeach

@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Task::factory()->count(26)->create();
-        $this->call([TasksTableSeeder::class]);
+        // $this->call([TasksTableSeeder::class]);
     }
 }

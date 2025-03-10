@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for tasklist-kadai on 2025-03-09T18:32:37+09:00
+# fly.toml app configuration file generated for tasklist-kadai on 2025-03-10T21:48:53+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -19,14 +19,23 @@ console_command = 'php /var/www/html/artisan tinker'
   LOG_STDERR_FORMATTER = 'Monolog\Formatter\JsonFormatter'
   SESSION_DRIVER = 'cookie'
   SESSION_SECURE_COOKIE = 'true'
+  APP_URL = 'https://tasklist-kadai.fly.dev'
+  APP_NAME = 'tasklist-kadai'
+  APP_DEBUG = false
+  DB_CONNECTION = 'pgsql'
+  DB_HOST = 'aws-0-ap-northeast-1.pooler.supabase.com'
+  DB_PORT = 5432
+  DB_DATABASE = 'postgres'
+  DB_USERNAME = 'postgres.njfxocwkqhpbbizecgmi'
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = 'stop'
+  auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
 
 [[vm]]
   size = 'shared-cpu-1x'
+  memory = '256mb'

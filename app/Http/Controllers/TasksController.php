@@ -12,12 +12,15 @@ class TasksController extends Controller
      */
     public function index()
     {
-        // $tasks = Task::all();
-        $tasks = Task::orderBy('id', 'asc')->paginate(25);
+        if (\Auth::check()) {
+            // $tasks = Task::all();
+            $tasks = Task::orderBy('id', 'asc')->paginate(25);
 
-        return view('tasks.index', [
-            'tasks' => $tasks,
-        ]);
+            return view('tasks.index', [
+                'tasks' => $tasks,
+            ]);
+        }
+        return view('dashboard');
     }
 
     /**
@@ -99,8 +102,14 @@ class TasksController extends Controller
     public function destroy(string $id)
     {
         $task = Task::findOrFail($id);
-        $task->delete();
 
-        return redirect('/');
+        if(\Auth::id() === $task->user_id) {
+            $task->delete();
+            return back()
+                ->with('success','Delete Successful');
+        }
+
+        return back()
+                ->with('Delete Failed');
     }
 }

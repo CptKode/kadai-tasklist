@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [TasksController::class, 'index']);
+Route::get('/', [TasksController::class, 'dashboard']);
 // Route::get('/', function () {
 //     return view('dashboard');
 // });
@@ -24,6 +24,10 @@ Route::get('/dashboard', [TasksController::class, 'index'])->middleware(['auth']
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('tasks/create', [TasksController::class, 'create'])->name('tasks.create');
+Route::post('tasks', [TasksController::class, 'store'])->name('tasks.store');
+Route::resource('tasks', TasksController::class);
 
 Route::middleware('auth')->group(function () {
     Route::resource('tasks', TasksController::class, ['only' => ['index', 'show']]);
